@@ -1,7 +1,7 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "cd ../.. && turbo run build --filter=@arfcodes/store-admin",
-  "devCommand": "cd ../.. && turbo run dev --filter=@arfcodes/store-admin",
+  "buildCommand": "turbo run build --filter=@arfcodes/store-admin",
+  "devCommand": "turbo run dev --filter=@arfcodes/store-admin",
   "installCommand": "pnpm install",
   "framework": null,
   "outputDirectory": "apps/admin/.next"
