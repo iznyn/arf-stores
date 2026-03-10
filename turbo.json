@@ -3,8 +3,9 @@
   "ui": "tui",
   "tasks": {
     "build": {
-      "dependsOn": ["^build"],
-      "outputs": [".next/**", "!.next/cache/**"]
+      "dependsOn": ["^build", "db:generate"],
+      "outputs": [".next/**", "!.next/cache/**"],
+      "env": ["DATABASE_URL", "NEXTAUTH_SECRET", "NEXTAUTH_URL"]
     },
     "lint": {
       "dependsOn": ["^lint"]
@@ -14,6 +15,9 @@
       "persistent": true
     },
     "clean": {
+      "cache": false
+    },
+    "db:generate": {
       "cache": false
     }
   }

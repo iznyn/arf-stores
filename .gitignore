@@ -28,6 +28,7 @@ yarn-error.log*
 # Local env files
 .env
 .env*.local
+packages/database/.env
 
 # Vercel
 .vercel
@@ -38,3 +39,14 @@ next-env.d.ts
 
 # Turbo
 .turbo
+
+# Prisma
+prisma/migrations/
+*.db
+*.db-journal
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo

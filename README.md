@@ -86,7 +86,41 @@ See [Product Requirements](./docs/product-requirements.md) for detailed feature 
 
 ## 🔗 Deployment
 
-This project is optimized for deployment on Vercel with zero configuration.
+### Deploy to Vercel
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/YOUR_USERNAME/store-admin)
+
+This project is optimized for Vercel deployment with:
+- **Turborepo** for monorepo builds
+- **Automatic Prisma Client generation**
+- **Zero-config deployment**
+
+### Quick Deploy Steps
+
+1. **Push to GitHub**
+   ```bash
+   git add .
+   git commit -m "Ready for deployment"
+   git push origin main
+   ```
+
+2. **Import to Vercel**
+   - Go to [vercel.com](https://vercel.com)
+   - Click "Add New Project"
+   - Import your GitHub repository
+
+3. **Add Environment Variables**
+   ```env
+   DATABASE_URL="your-postgres-url"
+   NEXTAUTH_SECRET="your-secret-key"
+   NEXTAUTH_URL="https://your-app.vercel.app"
+   ```
+
+4. **Deploy!**
+   - Vercel will automatically build and deploy
+   - Database schema will be applied on first run
+
+📖 **Full deployment guide**: See [docs/vercel-deployment.md](./docs/vercel-deployment.md)
 
 ## 📄 License
 
