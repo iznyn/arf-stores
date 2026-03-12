@@ -1,5 +1,7 @@
+"use client";
+
 import React from 'react';
-import { Menu, Search, Bell } from 'lucide-react';
+import { Menu, Search, Bell, LogOut } from 'lucide-react';
 import { Button } from '../../atoms/Button';
 import { Input } from '../../atoms/Input';
 import { Avatar } from '../../atoms/Avatar';
@@ -9,9 +11,17 @@ export interface HeaderProps {
   className?: string;
   onMenuClick?: () => void;
   title?: string;
+  onLogout?: () => void;
+  userName?: string;
 }
 
-export const Header = ({ className, onMenuClick, title = 'Dashboard' }: HeaderProps) => {
+export const Header = ({ 
+  className, 
+  onMenuClick, 
+  title = 'Dashboard',
+  onLogout,
+  userName = 'Admin'
+}: HeaderProps) => {
   return (
     <header className={cn("sticky top-0 z-30 flex h-14 w-full items-center justify-between border-b border-border/50 bg-background/80 px-6 backdrop-blur-md supports-backdrop-filter:bg-background/60", className)}>
       <div className="flex items-center gap-4">
@@ -39,10 +49,25 @@ export const Header = ({ className, onMenuClick, title = 'Dashboard' }: HeaderPr
         
         <div className="h-4 w-px bg-border/50 hidden sm:block mx-1"></div>
         
-        <Button variant="ghost" className="relative flex items-center gap-2 px-1 h-9 hover:bg-transparent">
-          <Avatar className="h-7 w-7 border border-border" fallback="AD" />
-          <span className="hidden text-sm font-medium sm:block text-foreground ml-1">Admin</span>
-        </Button>
+        <div className="flex items-center gap-2">
+          <Button variant="ghost" className="relative flex items-center gap-2 px-1 h-9 hover:bg-transparent">
+            <Avatar className="h-7 w-7 border border-border" fallback={userName.substring(0, 2).toUpperCase()} />
+            <span className="hidden text-sm font-medium sm:block text-foreground ml-1">{userName}</span>
+          </Button>
+          
+          {onLogout && (
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              onClick={onLogout}
+              className="h-9 w-9 text-muted-foreground hover:text-foreground hover:bg-destructive/10"
+              title="Logout"
+            >
+              <LogOut className="h-4 w-4" />
+              <span className="sr-only">Logout</span>
+            </Button>
+          )}
+        </div>
       </div>
     </header>
   );

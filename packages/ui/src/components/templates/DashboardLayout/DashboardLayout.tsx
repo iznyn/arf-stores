@@ -8,12 +8,16 @@ export interface DashboardLayoutProps {
   children: React.ReactNode;
   currentPath?: string;
   title?: string;
+  onLogout?: () => void;
+  userName?: string;
 }
 
 export const DashboardLayout = ({ 
   children, 
   currentPath = '/',
-  title = 'Dashboard'
+  title = 'Dashboard',
+  onLogout,
+  userName
 }: DashboardLayoutProps) => {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
@@ -44,7 +48,9 @@ export const DashboardLayout = ({
       <div className="flex w-full flex-1 flex-col overflow-hidden">
         <Header 
           title={title}
-          onMenuClick={() => setIsMobileSidebarOpen(!isMobileSidebarOpen)} 
+          onMenuClick={() => setIsMobileSidebarOpen(!isMobileSidebarOpen)}
+          onLogout={onLogout}
+          userName={userName}
         />
         
         <main className="flex-1 overflow-auto bg-background p-8">
