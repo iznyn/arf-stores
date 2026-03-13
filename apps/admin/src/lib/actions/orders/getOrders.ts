@@ -1,7 +1,7 @@
-'use server';
+"use server";
 
 import { prisma } from '@arfcodes/database';
-import { Order } from '@/app/orders/columns';
+import { Order } from '@/lib/types/actions/order.types';
 
 export async function getOrders(): Promise<Order[]> {
   try {

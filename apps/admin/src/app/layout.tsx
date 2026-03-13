@@ -4,7 +4,7 @@ import '@fontsource/inter/500.css';
 import '@fontsource/inter/600.css';
 import '@fontsource/inter/700.css';
 import './globals.css';
-import { LayoutWrapper } from './LayoutWrapper';
+import { LayoutWrapper } from '@/components/organisms/Layout/LayoutWrapper';
 import { SessionProvider } from 'next-auth/react';
 import { auth } from '@/lib/auth';
 

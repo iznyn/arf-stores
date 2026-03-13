@@ -1,6 +1,6 @@
 import { DataTable, Button, Typography } from '@arfcodes/ui';
 import { Download, Plus } from 'lucide-react';
-import { columns, Customer } from './columns';
+import { customerListColumns, Customer } from '@/components/molecules/Customer/CustomerListColumns';
 
 const data: Customer[] = [
   {
@@ -76,7 +76,7 @@ export default function CustomersPage() {
       </div>
 
       <div className="rounded-md border border-border/60 bg-card/50 backdrop-blur-sm">
-        <DataTable columns={columns} data={data} filterColumn="name" filterPlaceholder="Search customers..." />
+        <DataTable columns={customerListColumns} data={data} filterColumn="name" filterPlaceholder="Search customers..." />
       </div>
     </div>
   );

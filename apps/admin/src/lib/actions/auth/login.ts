@@ -1,9 +1,10 @@
 "use server";
 
-import { signIn, signOut } from "@/lib/auth";
+import { signIn } from "@/lib/auth";
 import { AuthError } from "next-auth";
+import { LoginResult } from "@/lib/types/actions/auth.types";
 
-export async function login(email: string, password: string) {
+export async function login(email: string, password: string): Promise<LoginResult> {
   try {
     await signIn("credentials", {
       email,
@@ -17,8 +18,4 @@ export async function login(email: string, password: string) {
     }
     return { error: "An error occurred" };
   }
-}
-
-export async function logout() {
-  await signOut({ redirect: false });
 }

@@ -1,6 +1,6 @@
 import { DataTable, Button, Typography } from '@arfcodes/ui';
 import { Download, Plus } from 'lucide-react';
-import { columns, InventoryItem } from './columns';
+import { inventoryListColumns, InventoryItem } from '@/components/molecules/Inventory/InventoryListColumns';
 
 const data: InventoryItem[] = [
   {
@@ -76,7 +76,7 @@ export default function InventoryPage() {
       </div>
 
       <div className="rounded-md border border-border/60 bg-card/50 backdrop-blur-sm">
-        <DataTable columns={columns} data={data} filterColumn="name" filterPlaceholder="Filter items..." />
+        <DataTable columns={inventoryListColumns} data={data} filterColumn="name" filterPlaceholder="Filter items..." />
       </div>
     </div>
   );

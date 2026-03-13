@@ -1,6 +1,6 @@
 import { DataTable, Button, Typography } from '@arfcodes/ui';
 import { Download, Plus } from 'lucide-react';
-import { columns, Distributor } from './columns';
+import { distributorListColumns, Distributor } from '@/components/molecules/Distributor/DistributorListColumns';
 
 const data: Distributor[] = [
   {
@@ -76,7 +76,7 @@ export default function DistributorsPage() {
       </div>
 
       <div className="rounded-md border border-border/60 bg-card/50 backdrop-blur-sm">
-        <DataTable columns={columns} data={data} filterColumn="name" filterPlaceholder="Search distributors..." />
+        <DataTable columns={distributorListColumns} data={data} filterColumn="name" filterPlaceholder="Search distributors..." />
       </div>
     </div>
   );

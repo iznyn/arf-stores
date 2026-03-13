@@ -1,10 +1,11 @@
 import { DataTable } from '@arfcodes/ui';
-import { columns } from './columns';
-import { AddProductDialog } from './components/AddProductDialog';
-import { getProducts } from '../../lib/actions/products';
+import { productListColumns } from '@/components/molecules/Product/ProductListColumns';
+import { AddProductDialog } from '@/components/molecules/Product/AddProductDialog';
+import { getProducts } from '@/lib/actions/products/getProducts';
+import { Product } from '@/lib/types/actions/product.types';
 
 export default async function ProductsPage() {
-  const data = await getProducts();
+  const data: Product[] = await getProducts();
 
   return (
     <div className="flex flex-col gap-6 animate-fade-in">
@@ -17,7 +18,7 @@ export default async function ProductsPage() {
       </div>
       
       <div className="rounded-md border border-border/60 bg-card/50 backdrop-blur-sm">
-        <DataTable columns={columns} data={data} filterColumn="name" />
+        <DataTable columns={productListColumns} data={data} filterColumn="name" />
       </div>
     </div>
   );

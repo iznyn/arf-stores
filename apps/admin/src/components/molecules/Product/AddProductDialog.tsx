@@ -20,7 +20,7 @@ import {
   SelectValue
 } from "@arfcodes/ui"
 import { Plus } from "lucide-react"
-import { createProduct } from "../../../lib/actions/products"
+import { createProduct } from "@/lib/actions/products/createProduct"
 
 export function AddProductDialog() {
   const [open, setOpen] = useState(false)

@@ -15,7 +15,7 @@ export type Transaction = {
   reference: string
 }
 
-export const columns: ColumnDef<Transaction>[] = [
+export const financialListColumns: ColumnDef<Transaction>[] = [
   {
     accessorKey: "date",
     header: ({ column }) => {

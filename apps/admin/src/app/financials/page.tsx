@@ -1,6 +1,6 @@
 import { DataTable, Button, Typography } from '@arfcodes/ui';
 import { Download, Plus } from 'lucide-react';
-import { columns, Transaction } from './columns';
+import { financialListColumns, Transaction } from '@/components/molecules/Financial/FinancialListColumns';
 
 const data: Transaction[] = [
   {
@@ -76,7 +76,7 @@ export default function FinancialsPage() {
       </div>
 
       <div className="rounded-md border border-border/60 bg-card/50 backdrop-blur-sm">
-        <DataTable columns={columns} data={data} filterColumn="description" filterPlaceholder="Search transactions..." />
+        <DataTable columns={financialListColumns} data={data} filterColumn="description" filterPlaceholder="Search transactions..." />
       </div>
     </div>
   );

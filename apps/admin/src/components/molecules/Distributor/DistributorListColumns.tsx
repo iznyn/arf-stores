@@ -2,20 +2,20 @@
 
 import { ColumnDef } from "@tanstack/react-table"
 import { Badge, Button } from "@arfcodes/ui"
-import { ArrowUpDown, MoreHorizontal, Mail, Phone } from "lucide-react"
+import { ArrowUpDown, MoreHorizontal, Mail, Phone, MapPin } from "lucide-react"
 
-export type Customer = {
+export type Distributor = {
   id: string
   name: string
+  contactPerson: string
   email: string
   phone: string
-  totalOrders: number
-  totalSpent: number
-  status: "active" | "inactive" | "blocked"
-  lastOrder: string
+  status: "active" | "inactive" | "pending"
+  rating: number
+  totalSupplied: number
 }
 
-export const columns: ColumnDef<Customer>[] = [
+export const distributorListColumns: ColumnDef<Distributor>[] = [
   {
     accessorKey: "name",
     header: ({ column }) => {
@@ -25,7 +25,7 @@ export const columns: ColumnDef<Customer>[] = [
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
           className="-ml-4 h-8 data-[state=open]:bg-accent"
         >
-          Customer
+          Distributor
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       )
@@ -33,17 +33,23 @@ export const columns: ColumnDef<Customer>[] = [
     cell: ({ row }) => (
       <div className="flex flex-col">
         <span className="font-medium">{row.getValue("name")}</span>
-        <span className="text-xs text-muted-foreground">{row.original.email}</span>
+        <span className="text-xs text-muted-foreground">{row.original.contactPerson}</span>
       </div>
     ),
   },
   {
-    accessorKey: "phone",
+    accessorKey: "email",
     header: "Contact",
     cell: ({ row }) => (
-      <div className="flex items-center gap-2 text-sm text-muted-foreground">
-        <Phone className="h-3 w-3" />
-        {row.getValue("phone")}
+      <div className="flex flex-col gap-1 text-sm text-muted-foreground">
+        <div className="flex items-center gap-2">
+          <Mail className="h-3 w-3" />
+          {row.getValue("email")}
+        </div>
+        <div className="flex items-center gap-2">
+          <Phone className="h-3 w-3" />
+          {row.original.phone}
+        </div>
       </div>
     ),
   },
@@ -56,8 +62,8 @@ export const columns: ColumnDef<Customer>[] = [
         <Badge 
           variant={
             status === "active" ? "success" : 
-            status === "inactive" ? "secondary" : 
-            "destructive"
+            status === "pending" ? "warning" : 
+            "secondary"
           }
           className="capitalize"
         >
@@ -67,15 +73,22 @@ export const columns: ColumnDef<Customer>[] = [
     },
   },
   {
-    accessorKey: "totalOrders",
-    header: () => <div className="text-right">Orders</div>,
-    cell: ({ row }) => <div className="text-right">{row.getValue("totalOrders")}</div>,
+    accessorKey: "rating",
+    header: () => <div className="text-center">Rating</div>,
+    cell: ({ row }) => {
+        const rating = parseFloat(row.getValue("rating"))
+        return (
+            <div className="text-center font-medium flex justify-center items-center gap-1">
+                <span className="text-amber-500">★</span> {rating.toFixed(1)}
+            </div>
+        )
+    },
   },
   {
-    accessorKey: "totalSpent",
-    header: () => <div className="text-right">Total Spent</div>,
+    accessorKey: "totalSupplied",
+    header: () => <div className="text-right">Total Supplied</div>,
     cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("totalSpent"))
+      const amount = parseFloat(row.getValue("totalSupplied"))
       const formatted = new Intl.NumberFormat("id-ID", {
         style: "currency",
         currency: "IDR",
@@ -84,11 +97,6 @@ export const columns: ColumnDef<Customer>[] = [
  
       return <div className="text-right font-medium">{formatted}</div>
     },
-  },
-  {
-    accessorKey: "lastOrder",
-    header: "Last Order",
-    cell: ({ row }) => <div className="text-sm text-muted-foreground">{row.getValue("lastOrder")}</div>,
   },
   {
     id: "actions",

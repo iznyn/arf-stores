@@ -15,7 +15,7 @@ export type InventoryItem = {
   lastUpdated: string
 }
 
-export const columns: ColumnDef<InventoryItem>[] = [
+export const inventoryListColumns: ColumnDef<InventoryItem>[] = [
   {
     accessorKey: "sku",
     header: "SKU",

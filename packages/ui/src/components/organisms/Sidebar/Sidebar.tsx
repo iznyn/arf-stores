@@ -7,7 +7,8 @@ import {
   Wallet, 
   Settings,
   Store,
-  Truck
+  Truck,
+  UserCog
 } from 'lucide-react';
 import { cn } from '../../../lib/utils';
 import { Logo } from '../../molecules/Logo';
@@ -21,6 +22,7 @@ export interface SidebarProps {
 
 const navigation = [
   { name: 'Dashboard', href: '/', icon: LayoutDashboard },
+  { name: 'Users', href: '/users', icon: UserCog },
   { name: 'Products', href: '/products', icon: Package },
   { name: 'Inventory', href: '/inventory', icon: Store },
   { name: 'Orders', href: '/orders', icon: ShoppingCart, badge: '12' },
